@@ -49,5 +49,33 @@ function returningUser(e) {
     e.preventDefault();
     email = document.getElementById('login-email');
     password = document.getElementById('login-password');
-    callLogin(email, password);
+    console.log(email);
+    console.log(password);
+    callLogin(email.value, password.value);
+}
+function callLogin(email, password) {
+    fetch('http://thesi.generalassemb.ly:8080/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, password: password })
+    })
+        .then(res => {
+            console.log(res);
+            return res;
+        })
+        .then(res => {
+            console.log(res.json());
+            // console.log(res);
+            // let temp = res.json();
+            // console.log(temp);
+            return res.json();
+        })
+        .then(res => {
+            console.log(res.token);
+            token = res.token;
+            // console.log(token.value);
+        })
+        .catch(error => {
+            console.error(error);
+        });
 }
