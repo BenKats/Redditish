@@ -103,10 +103,9 @@ function callLogin(email, password) {
 }
 
 function redirectHome() {
-    console.log(token);
-    console.log('end of signup func');
+    console.log('From redirectHome token: \n' + 'token');
     if (token != null) {
+        window.localStorage.setItem('token', token);
         window.location.href = './home.html';
     }
-    console.log('Skipped if statement');
 }
