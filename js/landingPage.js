@@ -5,12 +5,24 @@ const loginBttn = document.getElementById('login-bttn');
 let token = null;
 signupBttn.addEventListener('click', newUser);
 loginBttn.addEventListener('click', returningUser);
-
+document.querySelector('.signup-text').addEventListener('click', switchEntry);
+document.querySelector('.login-text').addEventListener('click', switchEntry);
+function switchEntry(e) {
+    console.log(e.target.className);
+    //TODO make the toggle switch classes instead of changing display css rule
+    let usernameField = document.getElementById('user-form');
+    if (e.target.className === 'login-text') {
+        usernameField.style.display = 'none';
+    }
+    if (e.target.className === 'signup-text') {
+        usernameField.style.display = 'block';
+    }
+}
 function newUser(e) {
     e.preventDefault();
     let username = document.getElementById('username');
-    let password = document.getElementById('signup-password');
-    let email = document.getElementById('signup-email');
+    let password = document.getElementById('password');
+    let email = document.getElementById('email');
     callSignup(username.value, password.value, email.value);
 }
 
@@ -41,8 +53,8 @@ function callSignup(username, password, email) {
 
 function returningUser(e) {
     e.preventDefault();
-    let email = document.getElementById('login-email');
-    let password = document.getElementById('login-password');
+    let email = document.getElementById('email');
+    let password = document.getElementById('password');
     console.log(email);
     console.log(password);
     callLogin(email.value, password.value);
@@ -61,16 +73,11 @@ function callLogin(email, password) {
             return res;
         })
         .then(res => {
-            // console.log(res.json());
-            // console.log(res);
-            // let temp = res.json();
-            // console.log(temp);
             return res.json();
         })
         .then(res => {
             console.log(res.token);
             token = res.token;
-            // console.log(token.value);
         })
         .catch(error => {
             console.error(error);
