@@ -1,26 +1,15 @@
 console.log('Landing Page JS connected');
 
-const bttn = document.querySelector('.signup-bttn');
-bttn.addEventListener('click', enterSite);
 let token = null;
 
-document.querySelector('.signup-text').addEventListener('click', switchEntry);
-document.querySelector('.login-text').addEventListener('click', switchEntry);
+document.querySelector('.signup-text').addEventListener('click', toggleEntry);
+document.querySelector('.login-text').addEventListener('click', toggleEntry);
 
-function enterSite(e) {
-    e.preventDefault();
-    if (e.target.className === 'signup-bttn') {
-        newUser(e);
-    } else if (e.target.className === 'signin-bttn') {
-        getUser(e);
-    } else {
-        console.error('What the heck did you click?');
-    }
-}
-function switchEntry(e) {
+function toggleEntry(e) {
     console.log(e.target.className);
     //TODO make the toggle switch classes instead of changing display css rule
     let usernameField = document.getElementById('user-form');
+    let bttn = document.getElementById('submit-button');
     if (e.target.className === 'login-text') {
         usernameField.style.display = 'none';
         bttn.className = 'signin-bttn';
@@ -30,6 +19,17 @@ function switchEntry(e) {
         usernameField.style.display = 'block';
         bttn.className = 'signup-bttn';
         bttn.innerText = 'Sign Up';
+    }
+}
+function postData(e) {
+    e.preventDefault();
+    let bttn = document.getElementById('submit-button');
+    if (bttn.className === 'signup-bttn') {
+        newUser(e);
+    } else if (bttn.className === 'signin-bttn') {
+        returningUser(e);
+    } else {
+        console.error('What the heck did you click?');
     }
 }
 function newUser(e) {
@@ -58,20 +58,27 @@ function callSignup(username, password, email) {
             console.log('Whats inside?');
             token = res.token;
             console.log(token);
+            redirectHome();
         })
         .catch(error => {
             console.error(error);
         });
-    console.log('MADE A NEW USER');
 }
 
 function returningUser(e) {
-    e.preventDefault();
+    // e.preventDefault();
     let email = document.getElementById('email');
     let password = document.getElementById('password');
     console.log(email);
     console.log(password);
     callLogin(email.value, password.value);
+
+    if (token != null) {
+        console.log('Reeached If');
+        window.location.href = './home.html';
+    }
+    console.log('Reached End of LogIn func');
+    console.log(token);
 }
 function callLogin(email, password) {
     fetch('http://thesi.generalassemb.ly:8080/login', {
@@ -83,17 +90,23 @@ function callLogin(email, password) {
         })
     })
         .then(res => {
-            console.log(res);
-            return res;
-        })
-        .then(res => {
             return res.json();
         })
         .then(res => {
             console.log(res.token);
             token = res.token;
+            redirectHome();
         })
         .catch(error => {
             console.error(error);
         });
+}
+
+function redirectHome() {
+    console.log(token);
+    console.log('end of signup func');
+    if (token != null) {
+        window.location.href = './home.html';
+    }
+    console.log('Skipped if statement');
 }

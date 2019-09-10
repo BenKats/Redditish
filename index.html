@@ -9,8 +9,7 @@
         <div class="container">
             <h1 class="signup-text">Sign Up</h1>
             <h1 class="login-text">Sign In</h1>
-
-            <form class="form-wrapper" id="signup">
+            <form onSubmit="postData(event)" class="form-wrapper" id="signup" novalidate>
                 <div class="form-section">
                     <label for="email">Email</label>
                     <input
@@ -42,7 +41,7 @@
                         required
                     />
                 </div>
-                <button type="submit" class="signup-bttn">Sign Up</button>
+                <button type="submit" class="signup-bttn" id="submit-button">Sign Up</button>
             </form>
         </div>
         <script src="./js/landingPage.js"></script>
