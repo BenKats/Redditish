@@ -18,4 +18,8 @@ function postBoxComplete() {
   // close postBox after submit
   let postBoxWindow = document.getElementById("postBox");
   postBoxWindow.style.display = "none";
+
+  //clear form
+  document.getElementById("postTitle").value = "";
+  document.getElementById("textBox").value = "";
 }
