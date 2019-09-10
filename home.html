@@ -3,23 +3,29 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8" />
-    <title>Redditish</title>
+    <title>Tea Time</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <nav class="navBar">
       <ul>
-        <li><a href="home.html">Redditish</a></li>
+        <li><a href="home.html">Tea Time</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="profile.html">Profile</a></li>
       </ul>
     </nav>
-    <div class="postBox">
-      <div class="postTitle">Placeholder Title</div>
-      <div class="textBox">Textbox appear</div>
+    <div class="postBox" id="postBox">
+      <div class="postTitle">
+        <input type="text name=" postTitle label="postTitle" />
+      </div>
+      <div class="textBox">
+        <input type="text name=" textBox label="textBox" />
+      </div>
       <div class="username">Username here</div>
       <div class="comments">Comment button here</div>
     </div>
 
-    <button id="newPost" type="submit">+</button>
+    <button onclick="postWindow()">+</button>
   </body>
+  <script src="./js/homePage.js"></script>
 </html>
