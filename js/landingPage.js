@@ -1,21 +1,35 @@
 console.log('Landing Page JS connected');
 
-const signupBttn = document.getElementById('signup-bttn');
-const loginBttn = document.getElementById('login-bttn');
+const bttn = document.querySelector('.signup-bttn');
+bttn.addEventListener('click', enterSite);
 let token = null;
-signupBttn.addEventListener('click', newUser);
-loginBttn.addEventListener('click', returningUser);
+
 document.querySelector('.signup-text').addEventListener('click', switchEntry);
 document.querySelector('.login-text').addEventListener('click', switchEntry);
+
+function enterSite(e) {
+    e.preventDefault();
+    if (e.target.className === 'signup-bttn') {
+        newUser(e);
+    } else if (e.target.className === 'signin-bttn') {
+        getUser(e);
+    } else {
+        console.error('What the heck did you click?');
+    }
+}
 function switchEntry(e) {
     console.log(e.target.className);
     //TODO make the toggle switch classes instead of changing display css rule
     let usernameField = document.getElementById('user-form');
     if (e.target.className === 'login-text') {
         usernameField.style.display = 'none';
+        bttn.className = 'signin-bttn';
+        bttn.innerText = 'Sign In';
     }
     if (e.target.className === 'signup-text') {
         usernameField.style.display = 'block';
+        bttn.className = 'signup-bttn';
+        bttn.innerText = 'Sign Up';
     }
 }
 function newUser(e) {
