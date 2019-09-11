@@ -3,29 +3,48 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8" />
-    <title>Tea Time</title>
+    <title>Spillit</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <nav class="navBar">
       <ul>
-        <li><a href="home.html">Tea Time</a></li>
-        <li><a href="about.html">About</a></li>
+        <li><a href="home.html">Spillit</a></li>
         <li><a href="profile.html">Profile</a></li>
       </ul>
     </nav>
-    <div class="postBox" id="postBox">
-      <div class="postTitle">
-        <input type="text name=" postTitle label="postTitle" />
+    <div id="wrapper">
+      <div class="postBox" id="postBox">
+        <div class="postTitle">
+          <input
+            type="text"
+            id="postTitle"
+            name="postTitle"
+            label="postTitle"
+            placeholder="title"
+            class="postTitle"
+          />
+        </div>
+        <div class="textBox">
+          <input
+            type="text"
+            id="textBox"
+            name="textBox"
+            label="textBox"
+            placeholder="text"
+            class="description"
+          />
+        </div>
+        <div class="username">Username here</div>
+        <div class="comments">View Comments</div>
+        <div class="posts"></div>
+        <button id="addPost" onclick="postBoxComplete(event)">Post</button>
       </div>
-      <div class="textBox">
-        <input type="text name=" textBox label="textBox" />
-      </div>
-      <div class="username">Username here</div>
-      <div class="comments">Comment button here</div>
+      <footer>
+        <button id="plusButton" onclick="postWindow()">+</button>
+      </footer>
     </div>
-
-    <button onclick="postWindow()">+</button>
+    <!--close wrapper-->
   </body>
   <script src="./js/homePage.js"></script>
 </html>
