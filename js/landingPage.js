@@ -42,7 +42,6 @@ function postData(e) {
     }
 }
 function newUser() {
-    // e.preventDefault();
     let username = document.getElementById('username');
     let password = document.getElementById('password');
     let email = document.getElementById('email');
@@ -78,7 +77,6 @@ function callSignup(username, password, email, altEmail, mobile, url) {
             token = res.token;
             console.log(token);
             callCreateProfile(altEmail, mobile, url);
-            // redirectHome();
         })
         .catch(error => {
             console.error(error);
@@ -111,7 +109,7 @@ function callCreateProfile(altEmail, mobile, url) {
             console.log('Whats inside?');
             console.log(res);
             console.log('You in');
-            // redirectHome();
+            redirectHome();
         })
         .catch(error => {
             console.error(error);
