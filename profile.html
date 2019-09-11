@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Spillit | Profile</title>
+        <link rel="stylesheet" href="./css/profile.css" />
+    </head>
+    <body>
+        <header class="header">
+            <nav class="nav">
+                <ul class="nav-items">
+                    <li class="nav-item"><a href="./home.html">Home</a></li>
+                    <li class="nav-item"><a href="./about.html">About</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="profile-container">
+            <img
+                src="https://i.kym-cdn.com/photos/images/original/001/389/407/186.jpg"
+                alt="pizza
+            cat"
+            />
+            <div class="text-container">
+                <form
+                    onSubmit="updateProfile(event)"
+                    class="form-wrapper"
+                    id="update-profile"
+                    novalidate
+                >
+                    <div class="form-section" id="user-form">
+                        <label for="username">Username</label>
+                        <input placeholder="John Smith" type="text" name="username" id="username" />
+                        <p>NOTHING</p>
+                    </div>
+                    <div class="form-section">
+                        <label for="email">Email</label>
+                        <input placeholder="email@me.com" type="email" name="email" id="email" />
+                        <p>NOTHING</p>
+                    </div>
+                    <div class="form-section">
+                        <label for="mobile">Mobile #:</label>
+                        <input placeholder="555-555-5555" type="mobile" name="mobile" />
+                        <p>NOTHING</p>
+                    </div>
+                    <div class="form-section">
+                        <label for="url">Website:</label>
+                        <input placeholder="Spillit.com" type="url" name="url" id="url" />
+                        <p>NOTHING</p>
+                    </div>
+                    <button type="submit" class="edit" id="edit-button">Edit</button>
+                </form>
+            </div>
+        </section>
+
+        <footer class="footer">Coded by Ben and Janna 2019</footer>
+    </body>
+</html>
