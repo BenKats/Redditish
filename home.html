@@ -14,32 +14,24 @@
       </ul>
     </nav>
     <div id="wrapper">
-      <div class="postBox" id="postBox">
-        <div class="postTitle">
-          <input
-            type="text"
-            id="postTitle"
-            name="postTitle"
-            label="postTitle"
-            placeholder="title"
-            class="postTitle"
-          />
-        </div>
-        <div class="textBox">
-          <input
-            type="text"
-            id="textBox"
-            name="textBox"
-            label="textBox"
-            placeholder="text"
-            class="description"
-          />
-        </div>
-        <div class="username">Username here</div>
-        <div class="comments">View Comments</div>
-        <div class="posts"></div>
-        <button id="addPost" onclick="postBoxComplete(event)">Post</button>
-      </div>
+      <form
+            onSubmit = "createPost(event)"
+            class="postForm"
+        >
+            <input
+                type="text"
+                class="title"
+                placeholder="title"
+            />
+            <input
+                type="text"
+                class="description"
+                placeholder="description"
+            />
+            <input type="submit" />
+        </form>
+        <ul class="posts">
+        </ul>
       <footer>
         <button id="plusButton" onclick="postWindow()">+</button>
       </footer>
