@@ -23,7 +23,7 @@ function postBoxComplete() {
   document.getElementById("postTitle").value = "";
   document.getElementById("textBox").value = "";
   createPost(event);
-  updateDom();
+  // updateDom();
 }
 
 function updateDom() {
@@ -113,20 +113,21 @@ function updateDom() {
 function createPost(event) {
   event.preventDefault();
   const title = document.querySelector(".postTitle");
-  const description = document.querySelector(".description");
+  const description = document.querySelector("#textBox");
+  //console.log(title.value + " " + description);
   fetch("http://thesi.generalassemb.ly:8080/post", {
     method: "POST",
     headers: {
-      Authorization: "Bearer " + localStorage.getItem("user"),
+      "Authorization": "Bearer " + localStorage.getItem("user"),
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      title: title.value,
-      description: description.value
+      title: "x",
+      description: "hiii"
     })
   })
     .then(res => {
-      console.log(res);
+      // console.log(res);
       updateDom(res);
     })
     .catch(err => {
