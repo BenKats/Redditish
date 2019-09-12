@@ -1,11 +1,12 @@
-console.log('Landing Page JS connected');
+console.log("Landing Page JS connected");
 
 let token = null;
 
-document.querySelector('.signup-text').addEventListener('click', toggleEntry);
-document.querySelector('.login-text').addEventListener('click', toggleEntry);
+document.querySelector(".signup-text").addEventListener("click", toggleEntry);
+document.querySelector(".login-text").addEventListener("click", toggleEntry);
 
 function toggleEntry(e) {
+
     console.log(e.target.className);
     //TODO make the toggle switch classes instead of changing display css rule
     let usernameField = document.getElementById('user-form');
@@ -126,25 +127,26 @@ function returningUser() {
     callLogin(email.value, password.value);
 }
 function callLogin(email, password) {
-    fetch('http://thesi.generalassemb.ly:8080/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            email: email,
-            password: password
-        })
+  fetch("http://thesi.generalassemb.ly:8080/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      email: email,
+      password: password
     })
-        .then(res => {
-            return res.json();
-        })
-        .then(res => {
-            console.log(res.token);
-            token = res.token;
-            redirectHome();
-        })
-        .catch(error => {
-            console.error(error);
-        });
+  })
+    .then(res => {
+      return res.json();
+    })
+    .then(res => {
+      console.log(res.token);
+      token = res.token;
+      localStorage.setItem("user", token);
+      redirectHome();
+    })
+    .catch(error => {
+      console.error(error);
+    });
 }
 
 function redirectHome() {
@@ -153,4 +155,5 @@ function redirectHome() {
         window.localStorage.setItem('token', token);
         window.location.href = './profile.html';
     }
+
 }
