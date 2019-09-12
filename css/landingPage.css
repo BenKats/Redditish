@@ -1,5 +1,5 @@
 body {
-  background-color: gray;
+  background-color: lightGray;
 }
 .container {
   text-align: center;
@@ -8,36 +8,47 @@ body {
   width: 50%;
   height: 300px;
   border-radius: 15px;
+  box-shadow: 10px 10px 5px black;
 }
 
 .row {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   margin-top: 10em;
+  background-color: #008a51;
+  border-radius: 15px;
 }
 .column {
-  color: gray;
   padding-right: 20px;
 }
 h1 {
+  color: white;
 }
 
 h1:hover {
-  color: red;
+  color: #f4ad45;
   text-decoration: underline;
 }
-
 .form-wrapper {
-  border: 3px solid blue;
   border-radius: 15px;
   width: 70%;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 5px;
+}
+.form-section {
+  color: gray;
+  font-size: 20px;
 }
 input {
   margin-bottom: 12px;
   height: 30px;
   font-size: 14px;
+  width: 60%;
+  border-radius: 5px;
+}
+input :focus {
+  border-bottom: green;
 }
 .signin-bttn {
   color: green;
@@ -46,9 +57,9 @@ input {
 .signup-bttn {
   border: none;
   border-radius: 15px;
-  background-color: #005b96;
+  background-color: #008a51;
   color: white;
   font-size: 18px;
   padding: 15px;
-  width: 60%;
+  width: 30%;
 }
