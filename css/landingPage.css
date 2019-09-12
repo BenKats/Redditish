@@ -1,7 +1,45 @@
+body {
+  background-color: gray;
+}
+.container {
+  text-align: center;
+  background-color: white;
+  margin: 0 auto;
+  width: 50%;
+  height: 300px;
+  border-radius: 15px;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  margin-top: 10em;
+}
+.column {
+  color: gray;
+  padding-right: 20px;
+}
+
+h1:hover {
+  color: red;
+  text-decoration: underline;
+}
+
+.form-wrapper {
+  border: 3px solid blue;
+  border-radius: 15px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+}
+input {
+  margin-bottom: 12px;
+}
 .signin-bttn {
-    color: green;
+  color: green;
 }
 
 .signup-bttn {
-    color: red'
+  color: red;
 }
