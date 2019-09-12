@@ -4,10 +4,14 @@
         'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-input {
+/* input {
     display: none;
-}
+} */
 
 p {
     display: inline;
+}
+
+.none {
+    display: none;
 }
