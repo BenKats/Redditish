@@ -14,27 +14,20 @@
       </ul>
     </nav>
     <div id="wrapper">
-      <form
-            onSubmit = "createPost(event)"
-            class="postForm"
-        >
-            <input
-                type="text"
-                class="title"
-                placeholder="title"
-            />
-            <input
-                type="text"
-                class="description"
-                placeholder="description"
-            />
-            <input type="submit" />
-        </form>
-        <ul class="posts">
-        </ul>
-      <footer>
+      <form onSubmit="createPost(event)" class="postForm">
+        <input type="text" class="title" placeholder="title" />
+        <input type="text" class="description" placeholder="description" />
+        <input type="submit" />
+      </form>
+      <!-- <button onclick="deletePost(event)">Delete</button> -->
+      <ul class="posts"></ul>
+      <form onSubmit="createComment(e)" class="commentForm">
+        <input type="text" class="comment" placeholder="Leave comments" />
+        <input type="submit" />
+      </form>
+      <!-- <footer>
         <button id="plusButton" onclick="postWindow()">+</button>
-      </footer>
+      </footer> -->
     </div>
     <!--close wrapper-->
   </body>

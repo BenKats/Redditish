@@ -134,3 +134,40 @@ function createPost(event) {
       console.log(err);
     });
 }
+
+// function showPosts(e){
+//   e.preventDefault;
+//   let postList = document.querySelector(".posts")
+//   fetch("http://thesi.generalassemb.ly:8080/post", {
+//     method: "POST",
+//     headers: {
+//       Authorization: "Bearer " + localStorage.getItem("user"),
+//       "Content-Type": "application/json"
+//     },
+//     body: JSON.stringify({
+//       posts: posts.value
+//     })
+//   })
+//   .then ()
+// } working on this.
+
+function createComment(e) {
+  e.preventDefault;
+  let comment = document.querySelector(".comment");
+  fetch("http://thesi.generalassemb.ly:8080/comment", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      text: comment.value
+    })
+      .then(res => {
+        // console.log(res);
+        updateDom(res);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  });
+}
