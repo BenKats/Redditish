@@ -153,21 +153,23 @@ function createPost(event) {
 
 function createComment(e) {
   e.preventDefault;
-  let comment = document.querySelector(".comment");
-  fetch("http://thesi.generalassemb.ly:8080/comment", {
+  let postId = event.target.id;
+  let comment = event.target.previousSibling;
+  fetch("http://thesi.generalassemb.ly:8080/comment/" + postId, {
     method: "POST",
     headers: {
+      Authorization: "Bearer " + localStorage.getItem("user"),
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
       text: comment.value
     })
-      .then(res => {
-        // console.log(res);
-        updateDom(res);
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  });
+  })
+    .then(res => {
+      // console.log(res);
+      updateDom(res);
+    })
+    .catch(err => {
+      console.log(err);
+    });
 }
