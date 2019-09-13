@@ -32,7 +32,7 @@ h1 {
 }
 
 h1:hover {
-  color: #f4ad45;
+  color: #085dad;
   text-decoration: underline;
 }
 .form-wrapper {
@@ -53,9 +53,7 @@ input {
   width: 60%;
   border-radius: 5px;
 }
-input :focus {
-  border-bottom: green;
-}
+
 .signin-bttn {
   color: green;
   border: none;
@@ -75,4 +73,10 @@ input :focus {
   font-size: 18px;
   padding: 15px;
   width: 30%;
+}
+
+.signup-bttn:hover,
+.signin-bttn:hover {
+  background-color: #085dad; /*dark blue*/
+  transition-duration: 0.3s;
 }
