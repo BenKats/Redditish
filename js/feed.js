@@ -85,17 +85,24 @@ function displayComments(postArr) {
             console.log(postComments[0].text);
 
             for (let j = 0; j < postComments.length; j++) {
+                //Create new elements
                 let newCommentContainer = document.createElement('div');
                 let newComment = document.createElement('p');
                 let newUser = document.createElement('p');
+                let newDeleteBttn = document.createElement('button');
 
                 targetCommentContainer.appendChild(newCommentContainer);
-                newCommentContainer.append(newUser, newComment);
+                newCommentContainer.append(newUser, newComment, newDeleteBttn);
 
                 newCommentContainer.setAttribute('cid', postComments[j].id);
                 newCommentContainer.classList.add('comment-container');
+
                 newComment.innerText = postComments[j].text;
                 newUser.innerText = `Username: ${postComments[j].user.username}`;
+                newDeleteBttn.innerText = 'Delete';
+
+                newDeleteBttn.addEventListener('click', deleteComment);
+                newDeleteBttn.value = postComments[j].id;
             }
         }
     }
@@ -123,4 +130,9 @@ function getCommentArr(commentArr, pid) {
     if (commentArr.length > 0) {
         window.sessionStorage.setItem(`${pid}`, JSON.stringify(commentArr));
     }
+}
+
+function deleteComment(e) {
+    // callDeleteComment
+    console.log(e.target);
 }
