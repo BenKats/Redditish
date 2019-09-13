@@ -94,8 +94,9 @@ input {
   transition-duration: 0.3s;
 }
 img {
-  position: fixed;
+  /* position: fixed;
   bottom: 0;
-  right: 0;
-  height: 200px;
+  right: 0; */
+  padding-top: 20px;
+  height: 100px;
 }
