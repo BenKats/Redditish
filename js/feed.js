@@ -44,8 +44,7 @@ function displayPosts(postArr) {
         let newTitle = document.createElement('h5');
         let newDesc = document.createElement('h5');
         let newUser = document.createElement('h6');
-        // let newDeleteBttn = document.createElement('button');
-        // let newCommentBttn = document.createElement('button');
+
         let pid = postArr[i].id;
 
         feedContainer.appendChild(newPost);
@@ -148,7 +147,28 @@ function callDeleteComment(cid) {
         headers: {
             Authorization: 'Bearer ' + token
         }
-    });
+    })
+        .then(res => {
+            console.log(res);
+
+            return res;
+        })
+        .then(res => {
+            console.log(res);
+            console.log(res.status);
+            if (res.status === 400) {
+                alert('You can only delete your own comments');
+            }
+            // console.log(res.json());
+            return res.json();
+        })
+        .then(res => {
+            console.log(res);
+            return res;
+        })
+        .catch(error => {
+            console.error(error);
+        });
 }
 
 function createNewPostField() {
@@ -244,4 +264,7 @@ function callCreateComment(e) {
         });
 
     text.value = null;
+}
+function refresh() {
+    location.reload();
 }
