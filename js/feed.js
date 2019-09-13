@@ -12,7 +12,7 @@ function callListPosts() {
         method: 'GET'
     }) //Force break
         .then(res => {
-            console.log(res);
+            // console.log(res);
             return res;
         })
         .then(res => {
@@ -20,9 +20,13 @@ function callListPosts() {
         })
         .then(res => {
             displayPosts(res);
+            return res;
         }) //.then(res => {
         //     test display comments here if doesnt work in display psots
         // })
+        .then(res => {
+            displayComments(res);
+        })
         .catch(error => {
             console.error(error);
         });
@@ -31,7 +35,7 @@ function callListPosts() {
 function displayPosts(postArr) {
     let feedContainer = document.querySelector('.feed-container');
     for (let i = 0; i < /*postArr.length*/ 20; i++) {
-        console.log(postArr[i]);
+        // console.log(postArr[i]);
         let newPost = document.createElement('div');
         let newTitleContainer = document.createElement('div');
         let newCommentContainer = document.createElement('div');
@@ -51,22 +55,51 @@ function displayPosts(postArr) {
         //set classes, attributes
         //set the pid of the div to the post id
         newPost.setAttribute('pid', pid);
+
         newTitleContainer.classList.add('title-container');
-        newCommentContainer.classList.add('comment-container');
+        newCommentContainer.classList.add('all-comment-container');
+        newCommentContainer.setAttribute('ccid', pid);
 
         //set text content
         newTitle.innerText = postArr[i].title;
         newDesc.innerText = postArr[i].description;
-        newUser.innerText = postArr[i].user.username;
+        newUser.innerText = `Username: ${postArr[i].user.username}`;
 
         //check for comments by post id
         callGetCommentsByPostId(pid);
-        //retrieve cached comments relative to the pid and convert back to JSON
-        let postComments = JSON.parse(window.sessionStorage.getItem(pid.toString()));
-        console.log(postComments);
     }
 }
+function displayComments(postArr) {
+    for (let i = 0; i < /*postArr.length*/ 20; i++) {
+        console.log(postArr[i]);
+        let pid = postArr[i].id;
 
+        if (sessionStorage.getItem(pid) != null) {
+            //retrieve cached comments relative to the pid and convert back to JSON
+            let postComments = JSON.parse(window.sessionStorage.getItem(pid.toString()));
+
+            // console.log('contents of postComments');
+            // console.log(postComments);
+
+            let targetCommentContainer = document.querySelector(`[ccid="${pid}"]`);
+            console.log(postComments[0].text);
+
+            for (let j = 0; j < postComments.length; j++) {
+                let newCommentContainer = document.createElement('div');
+                let newComment = document.createElement('p');
+                let newUser = document.createElement('p');
+
+                targetCommentContainer.appendChild(newCommentContainer);
+                newCommentContainer.append(newUser, newComment);
+
+                newCommentContainer.setAttribute('cid', postComments[j].id);
+                newCommentContainer.classList.add('comment-container');
+                newComment.innerText = postComments[j].text;
+                newUser.innerText = `Username: ${postComments[j].user.username}`;
+            }
+        }
+    }
+}
 function callGetCommentsByPostId(pid) {
     fetch(`http://thesi.generalassemb.ly:8080/post/${pid}/comment`, {
         method: 'GET'
@@ -89,7 +122,5 @@ function getCommentArr(commentArr, pid) {
     //doesn't cache comments if no comments exist, otherwise convert JSON object to string and store in session storage
     if (commentArr.length > 0) {
         window.sessionStorage.setItem(`${pid}`, JSON.stringify(commentArr));
-    } else {
-        window.sessionStorage.setItem(`${pid}`, JSON.stringify({ id: '-1' }));
     }
 }

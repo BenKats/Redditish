@@ -12,3 +12,10 @@
 .title-container {
     border: 2px solid black;
 }
+
+.comment-container {
+    border: 1px solid slateblue;
+}
+.comment-container > p:first-child {
+    font-weight: bold;
+}
