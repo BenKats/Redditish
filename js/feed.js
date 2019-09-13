@@ -5,6 +5,7 @@ let test = null;
 
 console.log(token);
 
+createNewPostField();
 callListPosts();
 // console.log(postArr);
 function callListPosts() {
@@ -43,11 +44,7 @@ function displayPosts(postArr) {
         let newDesc = document.createElement('h5');
         let newUser = document.createElement('h6');
         let pid = postArr[i].id;
-        //appending, see below for   structure
-        // feedContainer (all posts)
-        //     newPost (title, description, comments)
-        //         newTitleContainer (title, description)
-        //         newCommentContainer (comment)
+
         feedContainer.appendChild(newPost);
         newPost.append(newTitleContainer, newCommentContainer);
         newTitleContainer.append(newTitle, newDesc, newUser);
@@ -90,13 +87,13 @@ function displayComments(postArr) {
                 let newComment = document.createElement('p');
                 let newUser = document.createElement('p');
                 let newDeleteBttn = document.createElement('button');
-
+                //Append
                 targetCommentContainer.appendChild(newCommentContainer);
                 newCommentContainer.append(newUser, newComment, newDeleteBttn);
-
+                //Assign Attributes
                 newCommentContainer.setAttribute('cid', postComments[j].id);
                 newCommentContainer.classList.add('comment-container');
-
+                //Assign Text
                 newComment.innerText = postComments[j].text;
                 newUser.innerText = `Username: ${postComments[j].user.username}`;
                 newDeleteBttn.innerText = 'Delete';
@@ -133,6 +130,61 @@ function getCommentArr(commentArr, pid) {
 }
 
 function deleteComment(e) {
-    // callDeleteComment
+    // callDeleteComment(e.target.value);
     console.log(e.target);
+}
+
+function callDeleteComment(cid) {
+    fetch(`http://thesi.generalassemb.ly:8080/comment/${cid}`, {
+        method: 'DELETE',
+        headers: {
+            Authorization: 'Bearer ' + token
+        }
+    });
+}
+
+function createNewPostField() {
+    let feedContainer = document.querySelector('.feed-container');
+    let formContainer = document.createElement('form');
+    let newPostTitle = document.createElement('h4');
+    let titleInput = document.createElement('input');
+    let descInput = document.createElement('input');
+    let submitBttn = document.createElement('button');
+    feedContainer.appendChild(formContainer);
+    formContainer.append(newPostTitle, titleInput, descInput, submitBttn);
+
+    titleInput.classList.add('post-title-form');
+    descInput.classList.add('post-desc-form');
+
+    newPostTitle.innerText = 'Create New Post';
+    titleInput.placeholder = 'Post Title';
+    descInput.placeholder = 'Description';
+    submitBttn.innerText = 'Submit';
+    submitBttn.addEventListener('click', callCreatePost);
+}
+
+function callCreatePost(e) {
+    e.preventDefault();
+    console.log(`${document.querySelector('.post-title-form').value}`);
+    let title = document.querySelector('.post-title-form');
+    let desc = document.querySelector('.post-desc-form');
+    fetch('http://thesi.generalassemb.ly:8080/post', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + token
+        },
+        body: JSON.stringify({
+            title: title.value,
+            description: desc.value
+        })
+    })
+        .then(res => {
+            return res;
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    title.value = null;
+    desc.value = null;
 }
