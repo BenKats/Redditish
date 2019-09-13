@@ -28,8 +28,7 @@
 }
 .profile-container {
   text-align: center;
-  padding-top: 20px;
-  background: white;
+  padding-top: 30px;
 }
 
 #edit-button {
@@ -40,6 +39,7 @@
   font-size: 18px;
   padding: 15px;
   width: 15%;
+  margin-top: 20px;
 }
 
 #edit-button:hover {
@@ -63,4 +63,23 @@ p {
 
 .none {
   display: none;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  background-color: white;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  left: 0;
+}
+form {
+  margin-top: 30px;
+  line-height: 2em;
+}
+input {
+  padding: 5px;
+}
+label {
+  padding-right: 5px;
 }
