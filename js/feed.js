@@ -7,6 +7,7 @@ console.log(token);
 
 createNewPostField();
 callListPosts();
+
 // console.log(postArr);
 function callListPosts() {
     fetch('http://thesi.generalassemb.ly:8080/post/list', {
@@ -22,12 +23,12 @@ function callListPosts() {
         .then(res => {
             displayPosts(res);
             return res;
-        }) //.then(res => {
-        //     test display comments here if doesnt work in display psots
-        // })
+        })
         .then(res => {
             displayComments(res);
+            return res;
         })
+
         .catch(error => {
             console.error(error);
         });
@@ -43,6 +44,8 @@ function displayPosts(postArr) {
         let newTitle = document.createElement('h5');
         let newDesc = document.createElement('h5');
         let newUser = document.createElement('h6');
+        // let newDeleteBttn = document.createElement('button');
+        // let newCommentBttn = document.createElement('button');
         let pid = postArr[i].id;
 
         feedContainer.appendChild(newPost);
@@ -54,6 +57,7 @@ function displayPosts(postArr) {
         newPost.setAttribute('pid', pid);
 
         newTitleContainer.classList.add('title-container');
+        newTitleContainer.id = pid;
         newCommentContainer.classList.add('all-comment-container');
         newCommentContainer.setAttribute('ccid', pid);
 
@@ -62,9 +66,12 @@ function displayPosts(postArr) {
         newDesc.innerText = postArr[i].description;
         newUser.innerText = `Username: ${postArr[i].user.username}`;
 
+        // newCommentBttn.addEventListener('click', deleteComment);
+        // newCommentBttn.value = pid;
         //check for comments by post id
         callGetCommentsByPostId(pid);
     }
+    createNewCommentField();
 }
 function displayComments(postArr) {
     for (let i = 0; i < /*postArr.length*/ 20; i++) {
@@ -130,8 +137,9 @@ function getCommentArr(commentArr, pid) {
 }
 
 function deleteComment(e) {
-    // callDeleteComment(e.target.value);
-    console.log(e.target);
+    e.preventDefault();
+    callDeleteComment(e.target.value);
+    console.log(e.target.value);
 }
 
 function callDeleteComment(cid) {
@@ -162,6 +170,26 @@ function createNewPostField() {
     submitBttn.innerText = 'Submit';
     submitBttn.addEventListener('click', callCreatePost);
 }
+function createNewCommentField() {
+    // console.log(titleContainer.length);
+    let titleContainer = document.querySelectorAll('.title-container');
+    for (let i = 0; i < titleContainer.length; i++) {
+        let formContainer = document.createElement('form');
+        let newComment = document.createElement('h6');
+        let descInput = document.createElement('input');
+        let commentBttn = document.createElement('button');
+        titleContainer[i].appendChild(formContainer);
+        formContainer.append(newComment, descInput, commentBttn);
+        descInput.classList.add('comment-desc-form');
+        newComment.innerText = 'Create New Comment';
+        descInput.placeholder = 'Description';
+        commentBttn.innerText = 'comment';
+        commentBttn.value = i;
+        descInput.setAttribute('fid', titleContainer[commentBttn.value].id);
+        commentBttn.addEventListener('click', callCreateComment);
+        console.log(titleContainer[commentBttn.value].id);
+    }
+}
 
 function callCreatePost(e) {
     e.preventDefault();
@@ -187,4 +215,33 @@ function callCreatePost(e) {
         });
     title.value = null;
     desc.value = null;
+}
+function callCreateComment(e) {
+    e.preventDefault();
+    let titleContainer = document.querySelectorAll('.title-container');
+    let postNum = titleContainer[e.target.value].id;
+    // console.log(`${document.querySelector('.post-title-form').value}`);
+    console.log(postNum);
+    let text = document.querySelector(`[fid="${postNum}"]`);
+    console.log('trying to pass ' + text.value);
+    // let text = desc[num];
+    fetch(`http://thesi.generalassemb.ly:8080/comment/${postNum}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + token
+        },
+        body: JSON.stringify({
+            text: text.value
+        })
+    })
+        .then(res => {
+            console.log(res);
+            return res;
+        })
+        .catch(error => {
+            console.error(error);
+        });
+
+    text.value = null;
 }
