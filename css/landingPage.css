@@ -36,6 +36,9 @@ body {
 .column {
   padding-right: 20px;
 }
+.form-section{
+  margin: 0 auto;
+}
 h1 {
   color: white;
 }
@@ -65,6 +68,7 @@ input {
   width: 60%;
   border-radius: 5px;
   padding-left: 5px;
+  text-align: left;
 }
 
 .signin-bttn {
