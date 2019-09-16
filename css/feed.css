@@ -91,3 +91,9 @@ h4 {
   width: 100px;
   margin-left: 10px;
 }
+.all-comment-container {
+    background: gray;
+}
+.all-comment-container bttn {
+    background: white;
+}

@@ -92,6 +92,9 @@ function callGetProfile(
             altEmailDisplayed.innerText = res.additionalEmail;
             mobileDisplayed.innerText = res.mobile;
             urlDisplayed.innerText = res.address;
+            document.querySelector(
+                'img'
+            ).src = `https://api.adorable.io/avatars/285/${username.value}.png`;
         })
         .catch(error => {
             console.error(error);

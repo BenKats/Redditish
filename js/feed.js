@@ -35,19 +35,20 @@ function callListPosts() {
 }
 
 function displayPosts(postArr) {
-  let feedContainer = document.querySelector(".feed-container");
-  for (let i = 0; i < /*postArr.length*/ 20; i++) {
-    // console.log(postArr[i]);
-    let newPost = document.createElement("div");
-    newPost.classList.add("post");
-    let newTitleContainer = document.createElement("div");
-    let newCommentContainer = document.createElement("div");
-    let newTitle = document.createElement("h5");
-    let newDesc = document.createElement("h5");
-    let newUser = document.createElement("h6");
-    let newToggleComments = document.createElement("a");
-    newToggleComments.classList.add("toggleComments");
-    let pid = postArr[i].id;
+
+    let feedContainer = document.querySelector('.feed-container');
+    for (let i = postArr.length - 1; i > /*postArr.length*/ 1400; i--) {
+        // console.log(postArr[i]);
+        let newPost = document.createElement('div');
+        newPost.classList.add("post");
+        let newTitleContainer = document.createElement('div');
+        let newCommentContainer = document.createElement('div');
+        let newTitle = document.createElement('h5');
+        let newDesc = document.createElement('h5');
+        let newUser = document.createElement('h6');
+        let newToggleComments = document.createElement("a");
+        newToggleComments.classList.add("toggleComments");
+        let pid = postArr[i].id;
 
     feedContainer.appendChild(newPost);
     newPost.append(newTitleContainer, newCommentContainer);
@@ -76,9 +77,10 @@ function displayPosts(postArr) {
   createNewCommentField();
 }
 function displayComments(postArr) {
-  for (let i = 0; i < /*postArr.length*/ 20; i++) {
-    console.log(postArr[i]);
-    let pid = postArr[i].id;
+
+    for (let i = postArr.length - 1; i > /*postArr.length*/ 1400; i--) {
+        console.log(postArr[i]);
+        let pid = postArr[i].id;
 
     if (sessionStorage.getItem(pid) != null) {
       //retrieve cached comments relative to the pid and convert back to JSON
