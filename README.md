@@ -1,6 +1,6 @@
 # Spillit
 
-## A Reddit-like app with sign-up & log-in functionality, create posts, create & delete posts, profile with edittable fields and a custom avatar (adorable avatars).
+## A Reddit-like app with sign-up & log-in functionality, create posts, create, delete & toggle comments, profile with edittable fields and a custom avatar (adorable avatars).
 
 ### TODO: Update DOM without having to refresh the page 2 times.
 
@@ -14,3 +14,5 @@ Going into detail for each section, on the landing page to sign up the mandatory
 The homepage is where all posts and comments are displayed. Posts are arranged from most recent to oldest. Users can create posts and comment on posts. They can only delete their own posts, if a user tries deleting someone else's post they will receive an alert stating they do not have permission to do so. A feature added on the posts is a toggle comments button. By default comments will be hidden and when toggle comments is clicked on it will display the comments under the post. This design was created to condense the length display of the comments under each post.
 
 Lastly the profile page, users are able to click on the edit button and update their email, mobile# and website in the input fields.
+
+Every morning we would have a 10 minute standup in which we outlined tasks for the day and reviewed what we did the day prior and created stories.
