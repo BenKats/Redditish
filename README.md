@@ -1,8 +1,8 @@
 # Spillit
 
-## A Reddit-like app with sign-up/log-in functionality,
+## A Reddit-like app with sign-up & log-in functionality, create posts, create & delete posts, profile with edittable fields and a custom avatar (adorable avatars).
 
-### TODO: Users can create posts and comment on them. Users can also access their profiles, update their info and see their post history.
+### TODO: Update DOM without having to refresh the page 2 times.
 
 Shown in the image below, we planned to have the landing page for signing in, an about page describing the site, profile page and home page that would multiple posts in a grid format.
 ![Image of Spillit Design Plans](https://i.imgur.com/39kKwqw.jpg)
