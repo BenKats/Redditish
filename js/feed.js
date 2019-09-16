@@ -36,7 +36,7 @@ function callListPosts() {
 
 function displayPosts(postArr) {
     let feedContainer = document.querySelector('.feed-container');
-    for (let i = 0; i < /*postArr.length*/ 20; i++) {
+    for (let i = postArr.length - 1; i > /*postArr.length*/ 1400; i--) {
         // console.log(postArr[i]);
         let newPost = document.createElement('div');
         let newTitleContainer = document.createElement('div');
@@ -73,7 +73,7 @@ function displayPosts(postArr) {
     createNewCommentField();
 }
 function displayComments(postArr) {
-    for (let i = 0; i < /*postArr.length*/ 20; i++) {
+    for (let i = postArr.length - 1; i > /*postArr.length*/ 1400; i--) {
         console.log(postArr[i]);
         let pid = postArr[i].id;
 

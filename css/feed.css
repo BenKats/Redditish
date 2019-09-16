@@ -19,3 +19,9 @@
 .comment-container > p:first-child {
     font-weight: bold;
 }
+.all-comment-container {
+    background: gray;
+}
+.all-comment-container bttn {
+    background: white;
+}
