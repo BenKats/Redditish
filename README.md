@@ -5,7 +5,7 @@
 ### TODO: Users can create posts and comment on them. Users can also access their profiles, update their info and see their post history.
 
 Shown in the image below, we planned to have the landing page for signing in, an about page describing the site, profile page and home page that would multiple posts in a grid format.
-![Image of Spillit Design Plans](/img/spillit-design)
+![Image of Spillit Design Plans](/img/spillit-design.HEIC)
 
 During the process of designing our site, we discarded the about page and kept the landing page, home page, nav bar and the profile page.
 
